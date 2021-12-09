@@ -18,12 +18,14 @@ module.exports = {
       },
 
       fontFamily: {
-        "rubik": ["Rubik"],
+        rubik: "'Rubik', sans-serif",
       }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      brightness: ['hover', 'focus'],
+    },
   },
   plugins: [],
 }
