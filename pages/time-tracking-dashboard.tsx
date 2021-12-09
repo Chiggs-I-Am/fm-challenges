@@ -64,7 +64,6 @@ export default function TimeTrackingDashboard( props )
   {
     let selectedButton = event.currentTarget;
     const buttons = document.querySelectorAll(".navigation-button");
-    console.log( buttons );
 
     buttons.forEach(button => {
       button.classList.remove("active");
