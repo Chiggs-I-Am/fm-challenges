@@ -7,6 +7,27 @@ import Navigation from "../components/time-tracking-dashboard/navigation";
 import styled from "styled-components";
 import tw from "tailwind-styled-components";
 
+type TrackerProps = {
+  timePeriod: string;
+  title: string;
+  theme: string;
+  icon: string;
+  timeframes: {
+    daily: {
+        current: number;
+        previous: number;
+    };
+    weekly: {
+        current: number;
+        previous: number;
+    };
+    monthly: {
+        current: number;
+        previous: number;
+    };
+  };
+};
+
 export async function getStaticProps() {
   const data = await timeTrackerData.map(
     tracker => {
@@ -20,9 +41,9 @@ export async function getStaticProps() {
   }
 }
 
-export default function TimeTrackingDashboard( props ) 
+export default function TimeTrackingDashboard( props: any ) 
 {
-  const [ trackers, setTrackers ] = useState(props.tracker_data);
+  const [ trackers, setTrackers ] = useState( props.tracker_data );
   useEffect(() => {
     console.log(trackers);
   });
@@ -36,19 +57,19 @@ export default function TimeTrackingDashboard( props )
             showDaily={ ( event, period ) => {
               selectedButton(event);
               return setTrackers( 
-                trackers.map( tracker => { 
+                trackers.map( ( tracker: TrackerProps ) => { 
                   return { ...tracker, timePeriod: period } })
               )}}
             showWeekly={ ( event, period ) => {
               selectedButton(event);
               return setTrackers( 
-                trackers.map( tracker => { 
+                trackers.map( ( tracker: TrackerProps ) => { 
                   return { ...tracker, timePeriod: period } })
               )}}
             showMonthly={ ( event, period ) => {
               selectedButton(event);
               return setTrackers( 
-                trackers.map( tracker => { 
+                trackers.map( ( tracker: TrackerProps ) => { 
                   return { ...tracker, timePeriod: period } })
               )}} />
         </DashboardHeader>
