@@ -7,14 +7,22 @@ import Navigation from "../components/time-tracking-dashboard/navigation";
 import styled from "styled-components";
 import tw from "tailwind-styled-components";
 
-const tracker_data = timeTrackerData.map(
-  tracker => {
-    return { ...tracker, timePeriod: "daily" };
-});
+export async function getStaticProps() {
+  const data = await timeTrackerData.map(
+    tracker => {
+      return { ...tracker, timePeriod: "daily" };
+  });
 
-export default function TimeTrackingDashboard() 
+  return {
+    props: {
+      tracker_data: data
+    },
+  }
+}
+
+export default function TimeTrackingDashboard( props ) 
 {
-  const [ trackers, setTrackers ] = useState(tracker_data);
+  const [ trackers, setTrackers ] = useState(props.tracker_data);
   useEffect(() => {
     console.log(trackers);
   });
